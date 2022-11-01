@@ -6,10 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.OneToOne;
-import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.GenerationType;
-
 
 @Entity
 @Table(name = "users")
@@ -29,7 +27,6 @@ public class User {
     private String email;
 
     @OneToOne
-    @JoinColumn(name = "car_id")
     @MapsId
     private Car car;
 
@@ -40,13 +37,6 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-    }
-    // additional constructor for one-to-one entries
-    public User(String firstName, String lastName, String email, Car car) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.car = car;
     }
 
     public Long getId() {
@@ -115,15 +105,4 @@ public class User {
                 ", email='" + email + '\'' +
                 '}';
     }
-
-    //    @Override
-//    public String toString() {
-//        return "User { " +
-//                "id=" + id +
-//                ", firstName='" + firstName + '\'' +
-//                ", lastName='" + lastName + '\'' +
-//                ", email='" + email + '\'' +
-//                ", car='" + car.getModel() + " " + car.getSeries() +
-//                "'}";
-//    }
 }

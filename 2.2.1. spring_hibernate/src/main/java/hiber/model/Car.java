@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.OneToOne;
 import javax.persistence.GenerationType;
 
-
 @Entity
 @Table(name = "cars")
 public class Car {
@@ -58,6 +57,15 @@ public class Car {
         this.series = series;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass() || o.getClass() == null) return false;
@@ -65,11 +73,21 @@ public class Car {
         return series == car.series && model.equals(car.model);
     }
 
+    @Override
     public int hashCode() {
         int seed = 31;
         int result = 1;
         result = seed * result + (model == null ? 0 : model.hashCode());
         result = seed * result + series;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Car {" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", series=" + series + '\'' +
+                '}';
     }
 }
